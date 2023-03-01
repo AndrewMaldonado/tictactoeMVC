@@ -11,6 +11,9 @@ public class Model implements MessageHandler {
 
   // Messaging system for the MVC
   private final Messenger mvcMessaging;
+  private boolean whoseMove;
+  private boolean gameOver;
+  private String 2-dimensional array called board
 
   // Model's data variables
   private int variable1;
@@ -60,44 +63,8 @@ public class Model implements MessageHandler {
     }
   }
 
-  /**
-   * Getter function for variable 1
-   * @return Value of variable1
-   */
-  public int getVariable1() {
-    return variable1;
-  }
 
-  /**
-   * Setter function for variable 1
-   * @param v New value of variable1
-   */
-  public void setVariable1(int v) {
-    variable1 = v;
-    // When we set a new value to variable 1 we need to also send a
-    // message to let other modules know that the variable value
-    // was changed
-    mvcMessaging.notify("model:variable1Changed", variable1, true);
-  }
   
-  /**
-   * Getter function for variable 1
-   * @return Value of variable2
-   */
-  public int getVariable2() {
-    return variable2;
-  }
   
-  /**
-   * Setter function for variable 2
-   * @param v New value of variable 2
-   */
-  public void setVariable2(int v) {
-    variable2 = v;
-    // When we set a new value to variable 2 we need to also send a
-    // message to let other modules know that the variable value
-    // was changed
-    mvcMessaging.notify("model:variable2Changed", variable2, true);
-  }
 
 }
