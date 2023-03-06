@@ -16,8 +16,6 @@ public class Model implements MessageHandler {
   private String[][] board;
 
   // Model's data variables
-  private int variable1;
-  private int variable2;
 
   /**
    * Model constructor: Create the data representation of the program
@@ -64,7 +62,9 @@ public class Model implements MessageHandler {
       // Get the position string and convert to row and col
       String position = (String)messagePayload;
       Integer row = Integer.valueOf(position.substring(0,1));
-      Integer col = Integer.valueOf(position.substring(1,2));
+      Integer col = new Integer(position.substring(1,2));
+
+
       // If square is blank...
       if (this.board[row][col].equals("")) {
         // ... then set X or O depending on whose move it is
