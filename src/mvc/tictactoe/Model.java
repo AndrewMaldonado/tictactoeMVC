@@ -62,7 +62,9 @@ public class Model implements MessageHandler {
       // Get the position string and convert to row and col
       String position = (String)messagePayload;
       Integer row = Integer.valueOf(position.substring(0,1));
-      Integer col = new Integer(position.substring(1,2));
+      Integer col = Integer.valueOf(position.substring(1,2));
+
+
 
 
       // If square is blank...

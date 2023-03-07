@@ -34,7 +34,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
 
   }
   
-    @Override
+ @Override
   public void messageHandler(String messageName, Object messagePayload) {
     if (messagePayload != null) {
       System.out.println("MSG: received by view: "+messageName+" | "+messagePayload.toString());
@@ -57,6 +57,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
       jButton9.setText(board[2][2]);
     }
   }
+
     /**
      * Instantiate an object with the field number that was clicked (1 or 2) and
      * the direction that the number should go (up or down)
@@ -207,6 +208,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -227,9 +229,9 @@ public class View extends javax.swing.JFrame implements MessageHandler {
 
     private void onClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClick
         // TODO add your handling code here:
-        JButton button = (JButton)evt.getSource();
-        this.mvcMessaging.notify("playerMove", button.getName());
-
+        System.out.println("Clicked");
+        JButton position = (JButton)evt.getSource();
+        this.mvcMessaging.notify("playerMove", position.getName());
     }//GEN-LAST:event_onClick
 
   /**
