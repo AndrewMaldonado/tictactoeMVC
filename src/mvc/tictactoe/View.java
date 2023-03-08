@@ -91,24 +91,32 @@ public class View extends javax.swing.JFrame implements MessageHandler {
 
         jLabel1.setText("jLabel1");
 
+        jButton1.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
+        jButton1.setName("00"); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onClick(evt);
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
+        jButton2.setName("01"); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onClick(evt);
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
+        jButton3.setName("02"); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onClick(evt);
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
+        jButton4.setName("10"); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -116,12 +124,16 @@ public class View extends javax.swing.JFrame implements MessageHandler {
             }
         });
 
+        jButton5.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
+        jButton5.setName("11"); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onClick(evt);
             }
         });
 
+        jButton6.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
+        jButton6.setName("12"); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -129,6 +141,8 @@ public class View extends javax.swing.JFrame implements MessageHandler {
             }
         });
 
+        jButton7.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
+        jButton7.setName("20"); // NOI18N
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -136,6 +150,8 @@ public class View extends javax.swing.JFrame implements MessageHandler {
             }
         });
 
+        jButton8.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
+        jButton8.setName("21"); // NOI18N
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -143,6 +159,8 @@ public class View extends javax.swing.JFrame implements MessageHandler {
             }
         });
 
+        jButton9.setFont(new java.awt.Font("Liberation Sans", 0, 48)); // NOI18N
+        jButton9.setName("22"); // NOI18N
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
