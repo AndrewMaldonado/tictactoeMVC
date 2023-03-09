@@ -56,6 +56,11 @@ public class View extends javax.swing.JFrame implements MessageHandler {
       jButton8.setText(board[2][1]);
       jButton9.setText(board[2][2]);
     }
+    
+    if(messageName.equals("gameOver")) {
+        String winner = (String) messagePayload;
+        jLabel1.setText(winner + " wins");
+    }
   }
 
     /**

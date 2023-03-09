@@ -12,7 +12,7 @@ public class Model implements MessageHandler {
   // Messaging system for the MVC
   private final Messenger mvcMessaging;
   private boolean whoseMove = false;
-  private boolean gameOver;
+  private boolean gameOver = false;
   private String[][] board;
 
   // Model's data variables
@@ -68,26 +68,26 @@ public class Model implements MessageHandler {
 
 
       // If square is blank...
-      if(gameOver) {
-      if (this.board[row][col].equals("")) {
-        // ... then set X or O depending on whose move it is
-        if (this.whoseMove) {
-          this.board[row][col] = "X";
-          this.whoseMove = false;
-        } else {
-          this.board[row][col] = "O";
-          this.whoseMove = true;
-        }
+      
+        if (this.board[row][col].equals("")) {
+            // ... then set X or O depending on whose move it is
+            if (this.whoseMove) {
+                this.board[row][col] = "X";
+                this.whoseMove = false;
+            } else {
+                this.board[row][col] = "O";
+                this.whoseMove = true;
+            }
         // Send the boardChange message along with the new board 
         this.mvcMessaging.notify("boardChange", this.board);
-      }
-    }
-      
+        }      
     // newGame message handler
     
     
         if (!winner.equals("")) {
             this.gameOver = true;
+            this.mvcMessaging.notify("gameOver", winner);
+            System.out.println("Game Over");
         }
         
     } else if (messageName.equals("newGame")) {
