@@ -34,6 +34,7 @@ public class Model implements MessageHandler {
     this.newGame();
     this.mvcMessaging.subscribe("playerMove", this);
     this.mvcMessaging.subscribe("newGame", this);
+    this.mvcMessaging.subscribe("gameOver", this);
 
   }
   
@@ -119,8 +120,11 @@ public class Model implements MessageHandler {
 
   // Check the rows and columns for a tic tac toe
   for (int i=0; i<3; i++) {
-    if (status[i][0].equals(status[i][1]) && status[i][0].equals(status[i][2]))
-      return status[i][0];
+    if (status[i][0].equals(status[i][1]) && status[i][0].equals(status[i][2])) {
+     this.mvcMessaging.notify("gameOverO", this.board);
+    } else if (status[0][i].equals(status[1][i]) && status[0][i].equals(status[2][i])) {
+      this.mvcMessaging.notify("gameOver", this.board);
+    }
   }
    for(int i = 1; i<3; i++) {
     if (status[0][i].equals(status[1][i]) && status[0][i].equals(status[2][i]))
