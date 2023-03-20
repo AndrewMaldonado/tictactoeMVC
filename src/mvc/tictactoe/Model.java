@@ -11,8 +11,8 @@ public class Model implements MessageHandler {
 
   // Messaging system for the MVC
   private final Messenger mvcMessaging;
-  private boolean whoseMove = false;
-  private boolean gameOver = false;
+  private boolean whoseMove;
+  private boolean gameOver;
   private String[][] board;
 
   // Model's data variables
@@ -35,6 +35,8 @@ public class Model implements MessageHandler {
     this.mvcMessaging.subscribe("playerMove", this);
     this.mvcMessaging.subscribe("newGame", this);
     this.mvcMessaging.subscribe("gameOver", this);
+    whoseMove = false;
+    gameOver = false;
 
   }
   
@@ -57,7 +59,6 @@ public class Model implements MessageHandler {
     } else {
       System.out.println("MSG: received by model: "+messageName+" | No data sent");
     }
-    String winner = this.isWinner();
     // playerMove message handler
     if (messageName.equals("playerMove")) {
       // Get the position string and convert to row and col
@@ -85,11 +86,7 @@ public class Model implements MessageHandler {
     // newGame message handler
     
     
-        if (!winner.equals("")) {
-            this.gameOver = true;
-            this.mvcMessaging.notify("gameOver", winner);
-            System.out.println("Game Over");
-        }
+
         
     } else if (messageName.equals("newGame")) {
       // Reset the app state
@@ -122,20 +119,21 @@ public class Model implements MessageHandler {
   for (int i=0; i<3; i++) {
     if (status[i][0].equals(status[i][1]) && status[i][0].equals(status[i][2])) {
      this.mvcMessaging.notify("gameOverO", this.board);
-    } else if (status[0][i].equals(status[1][i]) && status[0][i].equals(status[2][i])) {
-      this.mvcMessaging.notify("gameOver", this.board);
-    }
+    } 
   }
    for(int i = 1; i<3; i++) {
-    if (status[0][i].equals(status[1][i]) && status[0][i].equals(status[2][i]))
-      return status[0][i];
+    if (status[0][i].equals(status[1][i]) && status[0][i].equals(status[2][i])) {
+       this.mvcMessaging.notify("gameOver", this.board);
+    } 
   }
 
   // Check the diagonals
-  if (status[0][0].equals(status[1][1]) && status[0][0].equals(status[2][2]))
-    return status[0][0];
-  if (status[0][2].equals(status[1][1]) && status[0][2].equals(status[2][0]))
-    return status[0][2];
+  if (status[0][0].equals(status[1][1]) && status[0][0].equals(status[2][2])) {
+     this.mvcMessaging.notify("gameOver", this.board);
+  }
+  if (status[0][2].equals(status[1][1]) && status[0][2].equals(status[2][0])) {
+     this.mvcMessaging.notify("gameOver", this.board);
+  }
 
   // If we haven't found it, then return a blank string
   return "";
