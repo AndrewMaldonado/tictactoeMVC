@@ -82,9 +82,32 @@ public class Model implements MessageHandler {
             }
         // Send the boardChange message along with the new board 
         this.mvcMessaging.notify("boardChange", this.board);
-        }      
-    // newGame message handler
+        }  
+        for (int i=0; i<3; i++) {
+            if (board[i][0].equals(board[i][1]) && board[i][0].equals(board[i][2]) && board[i][0] != null) {
+                this.mvcMessaging.notify("gameOver");
+            } 
+        }
+        for(int i = 1; i<3; i++) {
+            if (board[0][i].equals(board[1][i]) && board[0][i].equals(board[2][i]) && board[0][i] != null) {
+                this.mvcMessaging.notify("gameOver");
+            } 
+        }
+
+        // Check the diagonals
+        if (board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2])) {
+            this.mvcMessaging.notify("gameOver");
+        }
+        if (board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0])) {
+            this.mvcMessaging.notify("gameOver");
+        }
+
+       
     
+    // newGame message handler
+        if(this.gameOver) {
+            System.out.println("Game Over");
+        }
     
 
         
@@ -96,50 +119,4 @@ public class Model implements MessageHandler {
     }
 
   }
-
-      private String isWinner() {
-  // Get the text contents of each button.  
-  // Be sure you're accessing the
-  // buttons in the order you want.  
-  // The Netbeans UI sometimes mixes up
-  // the numbers on the button names so they're not in the 
-  // order you expect
-  String[][] status = new String[3][3];
-  status[0][0] = board[0][0];
-  status[0][1] = board[0][1];
-  status[0][2] = board[0][2];
-  status[1][0] = board[1][0];
-  status[1][1] = board[1][1];
-  status[1][2] = board[1][2];
-  status[2][0] = board[2][0];
-  status[2][1] = board[2][1];
-  status[2][2] = board[2][2];
-
-  // Check the rows and columns for a tic tac toe
-  for (int i=0; i<3; i++) {
-    if (status[i][0].equals(status[i][1]) && status[i][0].equals(status[i][2])) {
-     this.mvcMessaging.notify("gameOverO", this.board);
-    } 
-  }
-   for(int i = 1; i<3; i++) {
-    if (status[0][i].equals(status[1][i]) && status[0][i].equals(status[2][i])) {
-       this.mvcMessaging.notify("gameOver", this.board);
-    } 
-  }
-
-  // Check the diagonals
-  if (status[0][0].equals(status[1][1]) && status[0][0].equals(status[2][2])) {
-     this.mvcMessaging.notify("gameOver", this.board);
-  }
-  if (status[0][2].equals(status[1][1]) && status[0][2].equals(status[2][0])) {
-     this.mvcMessaging.notify("gameOver", this.board);
-  }
-
-  // If we haven't found it, then return a blank string
-  return "";
-}
-
-  
-  
-
 }

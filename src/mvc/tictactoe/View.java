@@ -12,6 +12,7 @@ import javax.swing.JButton;
 public class View extends javax.swing.JFrame implements MessageHandler {
 
     private final Messenger mvcMessaging;
+    Model M;
 
   
   /**
@@ -21,6 +22,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
   public View(Messenger messages) {
     mvcMessaging = messages;   // Save the calling controller instance
     initComponents();           // Create and init the GUI components
+    this.M = new Model(messages);
   }
   
   /**
@@ -31,7 +33,6 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     // Subscribe to messages here
     this.mvcMessaging.subscribe("boardChange", this);
     this.mvcMessaging.subscribe("gameOver", this);
-
   }
   
  @Override
@@ -59,6 +60,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     
     if(messageName.equals("gameOver")) {
         String winner = (String) messagePayload;
+        System.out.println("Game Over");
         jLabel1.setText(winner + " wins");
     }
   }
