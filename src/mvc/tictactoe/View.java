@@ -12,8 +12,7 @@ import javax.swing.JButton;
 public class View extends javax.swing.JFrame implements MessageHandler {
 
     private final Messenger mvcMessaging;
-    Model M;
-
+    //private String winner; 
   
   /**
    * Creates a new view
@@ -22,7 +21,6 @@ public class View extends javax.swing.JFrame implements MessageHandler {
   public View(Messenger messages) {
     mvcMessaging = messages;   // Save the calling controller instance
     initComponents();           // Create and init the GUI components
-    this.M = new Model(messages);
   }
   
   /**
@@ -33,6 +31,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     // Subscribe to messages here
     this.mvcMessaging.subscribe("boardChange", this);
     this.mvcMessaging.subscribe("gameOver", this);
+    this.mvcMessaging.subscribe("Tie", this);
   }
   
  @Override
@@ -50,18 +49,18 @@ public class View extends javax.swing.JFrame implements MessageHandler {
       jButton1.setText(board[0][0]);
       jButton2.setText(board[0][1]);
       jButton3.setText(board[0][2]);
-      jButton4.setText(board[1][0]);
+      jButton6.setText(board[1][0]);
       jButton5.setText(board[1][1]);
-      jButton6.setText(board[1][2]);
+      jButton4.setText(board[1][2]);
       jButton7.setText(board[2][0]);
       jButton8.setText(board[2][1]);
       jButton9.setText(board[2][2]);
     }
-    
-    if(messageName.equals("gameOver")) {
-        String winner = (String) messagePayload;
-        System.out.println("Game Over");
-        jLabel1.setText(winner + " wins");
+    if (messageName.equals("gameOver")) {
+        jLabel1.setText("Game Over");
+    }
+    if (messageName.equals("Tie")) {
+        jLabel1.setText("Tie");
     }
   }
 
