@@ -35,6 +35,7 @@ public class Model implements MessageHandler {
     this.mvcMessaging.subscribe("playerMove", this);
     this.mvcMessaging.subscribe("newGame", this);
     this.mvcMessaging.subscribe("gameOver", this);
+    this.mvcMessaging.subscribe("Tie", this);
     whoseMove = false;
     gameOver = false;
 
@@ -105,26 +106,31 @@ public class Model implements MessageHandler {
   }
   
    public String isWinner() {
-    for (int i=0; i<3; i++) {
-        if (board[i][0].equals(board[i][1]) && board[i][0].equals(board[i][2]) && board[i][0] != null) {
-            this.mvcMessaging.notify("gameOver");
-        } 
-    }
-    for(int i = 1; i<3; i++) {
-        if (board[0][i].equals(board[1][i]) && board[0][i].equals(board[2][i]) && board[0][i] != null) {
-            this.mvcMessaging.notify("gameOver");
-        } 
-    }
+    for (int i = 0; i < 3; i++) {
+                if (board[i][0].equals(board[i][1]) && board[i][0].equals(board[i][2]) && !board[i][0].equals("")) {
+                    this.mvcMessaging.notify("gameOver");
+                    gameOver = true;
+                }
+            }
+            for (int i = 0; i < 3; i++) {
+                if (board[0][i].equals(board[1][i]) && board[0][i].equals(board[2][i]) && !board[0][i].equals("")) {
+                    this.mvcMessaging.notify("gameOver");
+                    gameOver = true;
+                }
+            }
 
-    // Check the diagonals
-    if (board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2])) {
-        this.mvcMessaging.notify("gameOver");
-    }
-    if (board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0])) {
-        this.mvcMessaging.notify("gameOver");
-    }
+            if (board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2]) && !board[0][0].equals("")) {
+                this.mvcMessaging.notify("gameOver");
+                gameOver = true;
+            }
+            if (board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0]) && !board[0][2].equals("")) {
+                this.mvcMessaging.notify("gameOver");
+                gameOver = true;
+            }
 
-  // If we haven't found it, then return a blank string
-    return "";
-    }
+            if (!board[0][0].equals("") && !board[0][1].equals("") && !board[0][2].equals("") && !board[1][0].equals("") && !board[1][1].equals("")
+                    && !board[1][2].equals("") && !board[2][0].equals("") && !board[2][1].equals("") && !board[2][2].equals("")) {
+                this.mvcMessaging.notify("Tie");
+                gameOver = true;
+            }
 }
