@@ -83,26 +83,10 @@ public class Model implements MessageHandler {
         // Send the boardChange message along with the new board 
         this.mvcMessaging.notify("boardChange", this.board);
         }  
-        for (int i=0; i<3; i++) {
-            if (board[i][0].equals(board[i][1]) && board[i][0].equals(board[i][2]) && board[i][0] != null) {
-                this.mvcMessaging.notify("gameOver");
-            } 
-        }
-        for(int i = 1; i<3; i++) {
-            if (board[0][i].equals(board[1][i]) && board[0][i].equals(board[2][i]) && board[0][i] != null) {
-                this.mvcMessaging.notify("gameOver");
-            } 
-        }
 
-        // Check the diagonals
-        if (board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2])) {
-            this.mvcMessaging.notify("gameOver");
+        if(!this.gameOver) {
+            
         }
-        if (board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0])) {
-            this.mvcMessaging.notify("gameOver");
-        }
-
-       
     
     // newGame message handler
         if(this.gameOver) {
@@ -119,4 +103,28 @@ public class Model implements MessageHandler {
     }
 
   }
+  
+   public String isWinner() {
+    for (int i=0; i<3; i++) {
+        if (board[i][0].equals(board[i][1]) && board[i][0].equals(board[i][2]) && board[i][0] != null) {
+            this.mvcMessaging.notify("gameOver");
+        } 
+    }
+    for(int i = 1; i<3; i++) {
+        if (board[0][i].equals(board[1][i]) && board[0][i].equals(board[2][i]) && board[0][i] != null) {
+            this.mvcMessaging.notify("gameOver");
+        } 
+    }
+
+    // Check the diagonals
+    if (board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2])) {
+        this.mvcMessaging.notify("gameOver");
+    }
+    if (board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0])) {
+        this.mvcMessaging.notify("gameOver");
+    }
+
+  // If we haven't found it, then return a blank string
+    return "";
+    }
 }
